@@ -13,12 +13,16 @@ This project is ideal for beginners learning:
 
 ---
 
-## 📸 Screenshot (optional)
+## 📸 Screenshots
 
-You can add a screenshot of the terminal output after performing matrix addition.
+### 🖼️ Program Start
+![Program Start](1stpage.png)
 
-> 🖼️ Place your image in the root folder and rename it as `1stpage.png`, `1darray.png`. 
+### 🖼️ Array Input and Output
+![1-Dimension Array Input and Output](1darray.png)
 
+### 🖼️ Matrix Input and Output
+![2-Dimension Array or Matrix Input and Output](2darray.png)
 
 
 ## 🛠️ Features
@@ -36,7 +40,9 @@ MatrixAdditionApp/
 │
 ├── MatrixAddition.java      # Main source code
 ├── README.md                # Project documentation
-└── screenshot.png           # (Optional) Sample output screenshot
+└── 1stpage.png              # (Optional) Sample output screenshot
+└── 1darray.png
+└── 2darray.png
 ```
 
 ---
@@ -100,8 +106,8 @@ Enter elements of matrix 2:
 
 ## 🧑‍💻 Author
 
-- Developed by **[Your Name]**
-- GitHub: [yourgithub](https://github.com/yourgithub)
+- Developed by **[Satwik Saxena]**
+- GitHub: [https://github.com/satwik12-dev](https://github.com/satwik12-dev)
 
 ---
 
