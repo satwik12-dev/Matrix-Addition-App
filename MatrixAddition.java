@@ -87,7 +87,7 @@ class arrayadd {
         dialog.setLayout(new BorderLayout());
         dialog.setLocationRelativeTo(parent);
 
-        JPanel inputPanel = new JPanel(new GridLayout(6, 2, 10, 10));
+        JPanel inputPanel = new JPanel(new GridLayout(6, 1, 10, 10));
         inputPanel.setBackground(new Color(235, 255, 245));
 
         JTextField rowField = new JTextField();
@@ -249,6 +249,94 @@ class arrayadd {
         dialog.add(resultArea, BorderLayout.SOUTH);
 
         dialog.setVisible(true);
+    } 
+
+    @SuppressWarnings("unused")
+    void sub2dGUI(JFrame parent) {
+        JDialog dialog = new JDialog(parent, "2D Matrix Subtraction", true);
+        dialog.setSize(520, 620);
+        dialog.setLayout(new BorderLayout());
+        dialog.setLocationRelativeTo(parent);
+
+        JPanel inputPanel = new JPanel(new GridLayout(6, 1, 10, 10));
+        inputPanel.setBackground(new Color(255, 245, 235));
+
+        JTextField rowField = new JTextField();
+        JTextField colField = new JTextField();
+        JTextArea arr1Area = new JTextArea(10, 20);
+        JTextArea arr2Area = new JTextArea(10, 20);
+
+        inputPanel.add(styledLabel("Rows:"));
+        inputPanel.add(rowField);
+        inputPanel.add(styledLabel("Columns:"));
+        inputPanel.add(colField);
+        inputPanel.add(styledLabel("Matrix 1 (row-wise, space separated):"));
+        inputPanel.add(new JScrollPane(arr1Area));
+        inputPanel.add(styledLabel("Matrix 2 (row-wise, space separated):"));
+        inputPanel.add(new JScrollPane(arr2Area));
+
+        JButton subButton = new JButton("Subtract Matrices");
+        subButton.setBackground(new Color(255, 102, 51));
+        subButton.setForeground(Color.WHITE);
+        subButton.setFont(new Font("Segoe UI", Font.BOLD, 17));
+        subButton.setFocusPainted(false);
+        subButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        JTextArea resultArea = new JTextArea(10, 30);
+         resultArea.setPreferredSize(new Dimension(400, 180));
+        resultArea.setEditable(false);
+        resultArea.setBackground(new Color(255, 245, 235));
+        resultArea.setFont(new Font("Consolas", Font.BOLD, 16));
+        resultArea.setForeground(new Color(51, 51, 51));
+        resultArea.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 51), 2));
+
+        subButton.addActionListener(e -> {
+            try {
+                int rows = Integer.parseInt(rowField.getText().trim());
+                int cols = Integer.parseInt(colField.getText().trim());
+                String[] arr1Str = arr1Area.getText().trim().split("\\s+");
+                String[] arr2Str = arr2Area.getText().trim().split("\\s+");
+                if (arr1Str.length != rows * cols || arr2Str.length != rows * cols) {
+                    resultArea.setText("Number of elements doesn't match matrix size!");
+                    return;
+                }
+                int[][] arr1 = new int[rows][cols];
+                int[][] arr2 = new int[rows][cols];
+                int[][] diff = new int[rows][cols];
+                for (int i = 0; i < rows * cols; i++) {
+                    arr1[i / cols][i % cols] = Integer.parseInt(arr1Str[i]);
+                    arr2[i / cols][i % cols] = Integer.parseInt(arr2Str[i]);
+                }
+                StringBuilder sb = new StringBuilder("Result:\n");
+                for (int i = 0; i < rows; i++) {
+                    for (int j = 0; j < cols; j++) {
+                        diff[i][j] = arr1[i][j] - arr2[i][j];
+                        sb.append(String.format("%-5d", diff[i][j]));
+                    }
+                    sb.append("\n");
+                }
+                resultArea.setText(sb.toString());
+            } catch (Exception ex) {
+                resultArea.setText("Invalid input!");
+            }
+        });
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(new Color(255, 245, 235));
+        buttonPanel.add(subButton);
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.setBackground(new Color(255, 245, 235));
+        centerPanel.add(inputPanel);
+        centerPanel.add(Box.createVerticalStrut(10));
+        centerPanel.add(buttonPanel);
+        centerPanel.add(Box.createVerticalStrut(10));
+        centerPanel.add(new JScrollPane(resultArea));
+
+        dialog.add(centerPanel, BorderLayout.CENTER);
+
+        dialog.setVisible(true);
     }
 }
 
@@ -258,7 +346,7 @@ public class MatrixAddition extends arrayadd {
         // Stylish main frame
         JFrame frame = new JFrame("Matrix & Array Operations");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(430, 380);
+        frame.setSize(430, 430);
         frame.setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
@@ -294,6 +382,21 @@ public class MatrixAddition extends arrayadd {
         btn1dSub.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn1dSub.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        JButton btn2dSub = new JButton("2D Matrix Subtraction");
+        btn2dSub.setBackground(new Color(255, 102, 51));
+        btn2dSub.setForeground(Color.WHITE);
+        btn2dSub.setFont(new Font("Segoe UI", Font.BOLD, 19));
+        btn2dSub.setFocusPainted(false);
+        btn2dSub.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn2dSub.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Keep frame centered on maximize
+        frame.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+            frame.setLocationRelativeTo(null);
+            }
+        });
+
         JLabel footer = new JLabel("by SATWIK");
         footer.setFont(new Font("Segoe UI", Font.ITALIC, 14));
         footer.setForeground(new Color(102, 102, 255));
@@ -303,10 +406,12 @@ public class MatrixAddition extends arrayadd {
         panel.add(title);
         panel.add(Box.createVerticalStrut(30));
         panel.add(btn1dAdd);
-        panel.add(Box.createVerticalStrut(20));
+        panel.add(Box.createVerticalStrut(30));
         panel.add(btn2dAdd);
-        panel.add(Box.createVerticalStrut(20));
+        panel.add(Box.createVerticalStrut(30));
         panel.add(btn1dSub);
+        panel.add(Box.createVerticalStrut(30));
+        panel.add(btn2dSub);
         panel.add(Box.createVerticalGlue());
         panel.add(footer);
         panel.add(Box.createVerticalStrut(10));
@@ -319,5 +424,6 @@ public class MatrixAddition extends arrayadd {
         btn1dAdd.addActionListener(e -> SwingUtilities.invokeLater(() -> ad.add1dGUI(frame)));
         btn2dAdd.addActionListener(e -> SwingUtilities.invokeLater(() -> ad.add2dGUI(frame)));
         btn1dSub.addActionListener(e -> SwingUtilities.invokeLater(() -> ad.subarr1dGUI(frame)));
+        btn2dSub.addActionListener(e -> SwingUtilities.invokeLater(() -> ad.sub2dGUI(frame)));
     }
 }
