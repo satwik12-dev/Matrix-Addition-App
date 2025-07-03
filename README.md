@@ -18,12 +18,17 @@ This project is ideal for beginners learning:
 ### 🖼️ Program Start
 ![Program Start](1stpage.png)
 
-### 🖼️ Array Input and Output
+### 🖼️ Array Addition Input and Output
 ![1-Dimension Array Input and Output](1darray.png)
 
-### 🖼️ Matrix Input and Output
+### 🖼️ Matrix Addition Input and Output
 ![2-Dimension Array or Matrix Input and Output](2darray.png)
 
+### 🖼️ Array Subtraction Input and Output
+![1-Dimension Array Sybtraction Input and Output](1dSubtraction.png)
+
+### 🖼️ Matrix Subtraction Input and Output
+![2-Dimension Array or Matrix Input and Output](2dmatrixsubtraction.png)
 
 ## 🛠️ Features
 
