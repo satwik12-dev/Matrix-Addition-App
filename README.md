@@ -42,11 +42,6 @@ This project is ideal for beginners learning:
 
 ```
 Arrays/
-├── 1darray.png
-├── 1dSubtraction.png
-├── 1stpage.png
-├── 2darray.png
-├── 2dmatrixsubtraction.png
 ├── MatrixAddition.java
 └── README.md
 ```
