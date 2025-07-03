@@ -1,9 +1,9 @@
 package Arrays;
-
 import javax.swing.*;
 import java.awt.*;
-
+import java.util.*;
 class arrayadd {
+    @SuppressWarnings("unused")
     void add1dGUI(JFrame parent) {
         JDialog dialog = new JDialog(parent, "1D Array Addition", true);
         dialog.setSize(420, 370);
@@ -80,6 +80,7 @@ class arrayadd {
         dialog.setVisible(true);
     }
 
+    @SuppressWarnings("unused")
     void add2dGUI(JFrame parent) {
         JDialog dialog = new JDialog(parent, "2D Matrix Addition", true);
         dialog.setSize(520, 520);
@@ -172,40 +173,126 @@ class arrayadd {
         label.setForeground(new Color(102, 0, 102));
         return label;
     }
+
+    @SuppressWarnings("unused")
+    void subarr1dGUI(JFrame parent) {
+        JDialog dialog = new JDialog(parent, "1D Array Subtraction", true);
+        dialog.setSize(420, 370);
+        dialog.setLayout(new BorderLayout());
+        dialog.setLocationRelativeTo(parent);
+
+        JPanel inputPanel = new JPanel(new GridLayout(6, 1, 10, 10));
+        inputPanel.setBackground(new Color(240, 255, 255));
+
+        JTextField size1Field = new JTextField();
+        JTextField size2Field = new JTextField();
+        JTextField arr1Field = new JTextField();
+        JTextField arr2Field = new JTextField();
+
+        inputPanel.add(styledLabel("Enter size of Array 1:"));
+        inputPanel.add(size1Field);
+        inputPanel.add(styledLabel("Enter size of Array 2:"));
+        inputPanel.add(size2Field);
+        inputPanel.add(styledLabel("Array 1 (space separated):"));
+        inputPanel.add(arr1Field);
+        inputPanel.add(styledLabel("Array 2 (space separated):"));
+        inputPanel.add(arr2Field);
+
+        JButton subButton = new JButton("Subtract Arrays");
+        subButton.setBackground(new Color(51, 153, 255));
+        subButton.setForeground(Color.WHITE);
+        subButton.setFont(new Font("Segoe UI", Font.BOLD, 17));
+        subButton.setFocusPainted(false);
+        subButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        JTextArea resultArea = new JTextArea(2, 30);
+        resultArea.setEditable(false);
+        resultArea.setBackground(new Color(240, 255, 255));
+        resultArea.setFont(new Font("Consolas", Font.BOLD, 16));
+        resultArea.setForeground(new Color(51, 51, 51));
+        resultArea.setBorder(BorderFactory.createLineBorder(new Color(51, 153, 255), 2));
+
+        subButton.addActionListener(e -> {
+            try {
+                int n1 = Integer.parseInt(size1Field.getText().trim());
+                int n2 = Integer.parseInt(size2Field.getText().trim());
+                if (n1 != n2) {
+                    resultArea.setText("Array sizes must be equal!");
+                    return;
+                }
+                String[] arr1Str = arr1Field.getText().trim().split("\\s+");
+                String[] arr2Str = arr2Field.getText().trim().split("\\s+");
+                if (arr1Str.length != n1 || arr2Str.length != n2) {
+                    resultArea.setText("Number of elements doesn't match the size!");
+                    return;
+                }
+                int[] arr1 = new int[n1];
+                int[] arr2 = new int[n2];
+                int[] arr3 = new int[n1];
+                for (int i = 0; i < n1; i++) arr1[i] = Integer.parseInt(arr1Str[i]);
+                for (int i = 0; i < n2; i++) arr2[i] = Integer.parseInt(arr2Str[i]);
+                for (int i = 0; i < n1; i++) arr3[i] = arr1[i] - arr2[i];
+                StringBuilder sb = new StringBuilder("Result: ");
+                for (int v : arr3) sb.append(v).append(" ");
+                resultArea.setText(sb.toString());
+            } catch (Exception ex) {
+                resultArea.setText("Invalid input!");
+            }
+        });
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(new Color(240, 255, 255));
+        buttonPanel.add(subButton);
+        dialog.add(buttonPanel, BorderLayout.CENTER);
+
+        dialog.add(inputPanel, BorderLayout.NORTH);
+        dialog.add(resultArea, BorderLayout.SOUTH);
+
+        dialog.setVisible(true);
+    }
 }
 
 public class MatrixAddition extends arrayadd {
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         // Stylish main frame
-        JFrame frame = new JFrame("Matrix & Array Addition");
+        JFrame frame = new JFrame("Matrix & Array Operations");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(430, 340);
+        frame.setSize(430, 380);
         frame.setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
         panel.setBackground(new Color(255, 255, 204));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JLabel title = new JLabel("Choose Addition Type");
+        JLabel title = new JLabel("Choose Operation");
         title.setFont(new Font("Segoe UI", Font.BOLD, 26));
         title.setForeground(new Color(255, 51, 102));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton btn1d = new JButton("1D Array Addition");
-        btn1d.setBackground(new Color(255, 51, 153));
-        btn1d.setForeground(Color.WHITE);
-        btn1d.setFont(new Font("Segoe UI", Font.BOLD, 19));
-        btn1d.setFocusPainted(false);
-        btn1d.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btn1d.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JButton btn1dAdd = new JButton("1D Array Addition");
+        btn1dAdd.setBackground(new Color(255, 51, 153));
+        btn1dAdd.setForeground(Color.WHITE);
+        btn1dAdd.setFont(new Font("Segoe UI", Font.BOLD, 19));
+        btn1dAdd.setFocusPainted(false);
+        btn1dAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn1dAdd.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton btn2d = new JButton("2D Matrix Addition");
-        btn2d.setBackground(new Color(0, 204, 153));
-        btn2d.setForeground(Color.WHITE);
-        btn2d.setFont(new Font("Segoe UI", Font.BOLD, 19));
-        btn2d.setFocusPainted(false);
-        btn2d.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btn2d.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JButton btn2dAdd = new JButton("2D Matrix Addition");
+        btn2dAdd.setBackground(new Color(0, 204, 153));
+        btn2dAdd.setForeground(Color.WHITE);
+        btn2dAdd.setFont(new Font("Segoe UI", Font.BOLD, 19));
+        btn2dAdd.setFocusPainted(false);
+        btn2dAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn2dAdd.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton btn1dSub = new JButton("1D Array Subtraction");
+        btn1dSub.setBackground(new Color(51, 153, 255));
+        btn1dSub.setForeground(Color.WHITE);
+        btn1dSub.setFont(new Font("Segoe UI", Font.BOLD, 19));
+        btn1dSub.setFocusPainted(false);
+        btn1dSub.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn1dSub.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel footer = new JLabel("by SATWIK");
         footer.setFont(new Font("Segoe UI", Font.ITALIC, 14));
@@ -215,9 +302,11 @@ public class MatrixAddition extends arrayadd {
         panel.add(Box.createVerticalStrut(30));
         panel.add(title);
         panel.add(Box.createVerticalStrut(30));
-        panel.add(btn1d);
+        panel.add(btn1dAdd);
         panel.add(Box.createVerticalStrut(20));
-        panel.add(btn2d);
+        panel.add(btn2dAdd);
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(btn1dSub);
         panel.add(Box.createVerticalGlue());
         panel.add(footer);
         panel.add(Box.createVerticalStrut(10));
@@ -227,7 +316,8 @@ public class MatrixAddition extends arrayadd {
 
         MatrixAddition ad = new MatrixAddition();
 
-        btn1d.addActionListener(e -> SwingUtilities.invokeLater(() -> ad.add1dGUI(frame)));
-        btn2d.addActionListener(e -> SwingUtilities.invokeLater(() -> ad.add2dGUI(frame)));
+        btn1dAdd.addActionListener(e -> SwingUtilities.invokeLater(() -> ad.add1dGUI(frame)));
+        btn2dAdd.addActionListener(e -> SwingUtilities.invokeLater(() -> ad.add2dGUI(frame)));
+        btn1dSub.addActionListener(e -> SwingUtilities.invokeLater(() -> ad.subarr1dGUI(frame)));
     }
 }
