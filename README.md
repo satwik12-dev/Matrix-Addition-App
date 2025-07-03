@@ -41,13 +41,14 @@ This project is ideal for beginners learning:
 ## 📂 Project Structure
 
 ```
-MatrixAdditionApp/
-│
-├── MatrixAddition.java      # Main source code
-├── README.md                # Project documentation
-└── 1stpage.png              # (Optional) Sample output screenshot
-└── 1darray.png
-└── 2darray.png
+Arrays/
+├── 1darray.png
+├── 1dSubtraction.png
+├── 1stpage.png
+├── 2darray.png
+├── 2dmatrixsubtraction.png
+├── MatrixAddition.java
+└── README.md
 ```
 
 ---
