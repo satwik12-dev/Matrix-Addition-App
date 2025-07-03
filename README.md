@@ -76,37 +76,9 @@ Make sure you have the following installed:
 
 ---
 
-## 📦 Sample Input / Output
-
-### ✅ Input
-
-```
-Enter number of rows of matrix 1: 2
-Enter number of columns of matrix 1: 2
-Enter elements of matrix 1:
-1 2
-3 4
-
-Enter number of rows of matrix 2: 2
-Enter number of columns of matrix 2: 2
-Enter elements of matrix 2:
-5 6
-7 8
-```
-
-### ✅ Output
-
-```
-----------------------Addition of 2D matrix is----------------------
-6 8
-10 12
-```
-
----
-
 ## 🧑‍💻 Author
 
-- Developed by **[Satwik Saxena]**
+- Developed by **Satwik Saxena**
 - GitHub: [https://github.com/satwik12-dev](https://github.com/satwik12-dev)
 
 ---
