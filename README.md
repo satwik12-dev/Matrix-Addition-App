@@ -30,6 +30,12 @@ This project is ideal for beginners learning:
 ### 🖼️ Matrix Subtraction Input and Output
 ![2-Dimension Array or Matrix Input and Output](2dmatrixsubtraction.png)
 
+### 🖼️ Array Multiplication Input and Output
+![2-Dimension Array or Matrix Input and Output](1dMultiplication.png)
+
+### 🖼️ Matrix Multiplication Input and Output
+![2-Dimension Array or Matrix Input and Output](2DMultiplication.png)
+
 ## 🛠️ Features
 
 - Input custom matrix sizes and elements
@@ -90,8 +96,3 @@ This project is open-source and available under the MIT License.
 
 ---
 
-## 🔧 To-Do / Improvements
-
-- Add matrix subtraction and multiplication
-- GUI using Swing or JavaFX
-- Input validation and error handling
