@@ -1,5 +1,5 @@
 
-# Matrix Addition App 🧮
+# Matrix Arithmetic Operations App 🧮
 
 ## 📌 Description
 
