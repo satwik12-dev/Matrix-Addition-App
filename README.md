@@ -6,10 +6,10 @@
 **Matrix Addition App** is a simple Java console application that performs addition of two matrices. The user is prompted to enter the dimensions and elements of two matrices, and the application computes and displays the resulting matrix.
 
 This project is ideal for beginners learning:
-- Java basics
-- 2D arrays
+- Java & Swing 
+- 1D & 2D arrays
 - Loops and user input
-- Input validation (optional improvement)
+- Input validation
 
 ---
 
